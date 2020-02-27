@@ -19,18 +19,47 @@ You can use the minified version:
 ### Decode
 
 ```javascript
-blurhash.decodePromise(hash, width, height, punch).then(imgObject => {
-    document.body.appendChild(imgObject);
-});
+/**
+ * @param {String} blurhash
+ * @param {Number} width
+ * @param {Number} height
+ * @param {Number} punch
+ * @returns {Promise<Uint8ClampedArray>}
+ */
+blurhash.decodePromise(blurhash, width, height, punch);
+
+/**
+ * @param {String} blurhash
+ * @param {Number} width
+ * @param {Number} height
+ * @param {Number} punch
+ * @returns {Uint8ClampedArray}
+ */
+blurhash.decode(blurhash, width, height, punch);
 ```
 
 ### Encode
 
 ```javascript
-// imgData is a Uint8ClampedArray
-blurhash
-    .encodePromise(imgData, width, height, componentX, componentY)
-    .then(hash => console.log(hash));
+/**
+ * @param {Uint8ClampedArray} pixels
+ * @param {Number} width
+ * @param {Number} height
+ * @param {Number} componentX
+ * @param {Number} componentY
+ * @returns {Promise<String>}
+ */
+blurhash.encodePromise(pixels, width, height, componentX, componentY);
+
+/**
+ * @param {Uint8ClampedArray} pixels
+ * @param {Number} width
+ * @param {Number} height
+ * @param {Number} componentX
+ * @param {Number} componentY
+ * @returns {String}
+ */
+blurhash.encode(pixels, width, height, componentX, componentY);
 ```
 
 ### Utils

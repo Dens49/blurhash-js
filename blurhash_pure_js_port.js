@@ -256,12 +256,26 @@ const blurhash = (function(context) {
 
     // context
 
+    /**
+     * @param {String} blurhash
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Number} punch
+     * @returns {Promise<Uint8ClampedArray>}
+     */
     context.decodePromise = (blurhash, width, height, punch = 1.0) => {
         return new Promise((resolve, reject) => {
             resolve(context.decode(blurhash, width, height, punch));
         });
     };
 
+    /**
+     * @param {String} blurhash
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Number} punch
+     * @returns {Uint8ClampedArray}
+     */
     context.decode = (blurhash, width, height, punch = 1.0) => {
         validateBlurhash(blurhash);
 
@@ -322,6 +336,14 @@ const blurhash = (function(context) {
         return pixels;
     };
 
+    /**
+     * @param {Uint8ClampedArray} pixels
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Number} componentX
+     * @param {Number} componentY
+     * @returns {Promise<String>}
+     */
     context.encodePromise = (pixels, width, height, componentX, componentY) => {
         return new Promise((resolve, reject) => {
             resolve(
@@ -330,6 +352,14 @@ const blurhash = (function(context) {
         });
     };
 
+    /**
+     * @param {Uint8ClampedArray} pixels
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Number} componentX
+     * @param {Number} componentY
+     * @returns {String}
+     */
     context.encode = (pixels, width, height, componentX, componentY) => {
         if (
             componentX < 1 ||
@@ -415,6 +445,12 @@ const blurhash = (function(context) {
         return ctx.getImageData(0, 0, width, height).data;
     };
 
+    /**
+     * @param {Image} img
+     * @param {Number} width
+     * @param {Number} height
+     * @returns {HTMLCanvasElement}
+     */
     context.drawImageDataOnNewCanvas = (imgData, width, height) => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
@@ -426,6 +462,12 @@ const blurhash = (function(context) {
         return canvas;
     };
 
+    /**
+     * @param {Uint8ClampedArray} imgData
+     * @param {Number} width
+     * @param {Number} height
+     * @returns {Promise<Image>}
+     */
     context.getImageDataAsImageWithOnloadPromise = (imgData, width, height) => {
         return new Promise((resolve, reject) => {
             context.getImageDataAsImage(
@@ -439,6 +481,12 @@ const blurhash = (function(context) {
         });
     };
 
+    /**
+     * @param {Uint8ClampedArray} imgData
+     * @param {Number} width
+     * @param {Number} height
+     * @param {function} onload on image load
+     */
     context.getImageDataAsImage = (imgData, width, height, onload) => {
         const canvas = context.drawImageDataOnNewCanvas(imgData, width, height);
         const dataURL = canvas.toDataURL();
