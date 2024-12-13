@@ -6,10 +6,12 @@
         <script src="blurhash_pure_js_port.min.js"></script>
         <script>
             const imgContainer = document.getElementById("imgContainer");
+            
             const img = new Image();
             img.crossOrigin = "Anonymous";
             img.onload = () => {
                 imgContainer.appendChild(img);
+                
                 const imgData = blurhash.getImageData(img);
 
                 blurhash
@@ -51,7 +53,8 @@
                         document.body.appendChild(imgObject);
                     });
             };
-            img.src = "https://placekitten.com/600/400";
+            
+            img.src = "https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png";
         </script>
     </body>
 </html>
