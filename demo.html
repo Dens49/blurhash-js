@@ -6,12 +6,10 @@
         <script src="blurhash_pure_js_port.min.js"></script>
         <script>
             const imgContainer = document.getElementById("imgContainer");
-            
             const img = new Image();
             img.crossOrigin = "Anonymous";
             img.onload = () => {
                 imgContainer.appendChild(img);
-                
                 const imgData = blurhash.getImageData(img);
 
                 blurhash
@@ -53,7 +51,6 @@
                         document.body.appendChild(imgObject);
                     });
             };
-            
             img.src = "https://placecats.com/louie/400/400";
         </script>
     </body>
